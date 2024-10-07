@@ -56,7 +56,7 @@
         --aspect-xxs: 320 / 200;
 
         @media screen and (max-width: 834.98px) {
-            --fs-h1: 2.4rem;
+            --fs-h1: 2.3rem;
             --fs-h1-lg: clamp(1rem, 15vw, 16.8rem);
             --fs-text-lg: 1.8rem;
             --aspect-hero: 720 / 228;
