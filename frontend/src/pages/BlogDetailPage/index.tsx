@@ -1,15 +1,18 @@
 import RecentBlogs from "./components/RecentBlogs";
 import BlogContent from "./components/BlogContent";
 import useBlogDetail from "./useBlogDetail";
+import Container from "../../components/Container";
 
 const BlogDetailPage = () => {
   const { blogContentProps, recentBlogsProps } = useBlogDetail();
   const { blogSingle } = blogContentProps;
   return (
-    <div className="flex flex-col-reverse gap-default px-[32px] py-[30px] lg:flex-row">
-      <RecentBlogs {...recentBlogsProps} />
-      <BlogContent {...blogSingle?.data?.data} />
-    </div>
+    <Container tailStyles="pt-[30px]">
+      <div className="flex flex-col-reverse gap-default lg:flex-row">
+        <RecentBlogs {...recentBlogsProps} />
+        <BlogContent {...blogSingle?.data?.data} />
+      </div>
+    </Container>
   );
 };
 

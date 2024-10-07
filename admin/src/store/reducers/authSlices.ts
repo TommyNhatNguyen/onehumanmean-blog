@@ -7,9 +7,6 @@ import {
 import adminAuthServices from "../../services/adminAuthServices";
 import tokenMethod from "../../utils/tokenMethod";
 import { message } from "antd";
-import { getAllBlogs } from "./blogSlices";
-import { getAllProjects } from "./projectSlices";
-import { getAllNotifications } from "./notiSlices";
 
 type userProfileType = {
   username: string | null;
@@ -80,7 +77,7 @@ export default authReducers;
 export const loginAdmin = createAsyncThunk(
   "admin/login",
   async (payload: any, thunkAPI) => {
-    const { rejectWithValue, dispatch } = thunkAPI;
+    const { rejectWithValue } = thunkAPI;
     const {
       email,
       password,
@@ -95,9 +92,6 @@ export const loginAdmin = createAsyncThunk(
       if (res?.data?.data) {
         const { user, accessToken, refreshToken } = res?.data?.data;
         tokenMethod.set({ accessToken, refreshToken });
-        dispatch(getAllBlogs());
-        dispatch(getAllProjects());
-        dispatch(getAllNotifications());
         onSuccess();
         return user;
       }

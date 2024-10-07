@@ -15,7 +15,7 @@ const BlogContent = ({
   thumbnail_url,
   id,
 }: BlogContentType) => {
-  const formatedDate = moment(created_at)?.format("d MMM YYYY");
+  const formatedDate = moment(created_at)?.format("DD MMM YYYY");
   const categoryList = category?.split(",") as string[];
   return (
     <>

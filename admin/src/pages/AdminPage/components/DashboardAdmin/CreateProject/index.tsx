@@ -110,6 +110,8 @@ const CreateProject = () => {
     }
     if (form.category.length === 0) {
       message.error("Please choose a category");
+    } else if (form.category.length > 7) {
+      message.error("Max category");
     }
     if (form.content === "") {
       message.error("Please fill in content");

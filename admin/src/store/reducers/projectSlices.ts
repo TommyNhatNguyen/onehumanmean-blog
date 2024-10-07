@@ -4,6 +4,7 @@ import {
   createSlice,
 } from "@reduxjs/toolkit";
 import { projectServices } from "../../services/projectServices";
+import { message } from "antd";
 
 export interface projectType {
   projects: any[];
@@ -137,8 +138,9 @@ export const createProject = createAsyncThunk(
         dispatch(getAllProjects());
         return res?.data?.data;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      message.error(error?.response?.data?.message);
       rejectWithValue(error);
     }
   },
@@ -155,8 +157,9 @@ export const updateProjectById = createAsyncThunk(
         dispatch(getAllProjects());
         return res?.data?.data;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      message.error(error?.response?.data?.message);
       rejectWithValue(error);
     }
   },
@@ -173,8 +176,9 @@ export const deleteProjectById = createAsyncThunk(
         dispatch(getAllProjects());
         return res?.data?.data;
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
+      message.error(error?.response?.data?.message);
       rejectWithValue(error);
     }
   },

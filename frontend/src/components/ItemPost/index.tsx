@@ -33,7 +33,7 @@ const ItemPost = ({
   basePath = "",
 }: ItemPostType) => {
   const itemPath = basePath + `/${id}`;
-  const description = content?.match(/<p>(.*?)<\/p>/s)?.[1] || "";
+  const description = content?.match(/<p[^>]*>(.*?)<\/p>/s)?.[1] || "";
   const formatedDate = moment(created_at).format("DD MMM YYYY");
   const categoryList = category?.split(",");
   return (
@@ -86,7 +86,7 @@ const ItemPost = ({
                 <div className="flex items-start justify-between">
                   <h2
                     className={clsx(
-                      "mb-[12px] hyphens-auto font-semibold text-h2 text-black-100 duration-150 group-hover:text-gray-100 dark:text-white",
+                      "mb-[12px] line-clamp-2 hyphens-auto font-semibold text-h2 text-black-100 duration-150 group-hover:text-gray-100 dark:text-white",
                       variant === "small" ? "mb-[8px] text-h2-sm" : "",
                       textclamps ? `line-clamp-${textclamps}` : "",
                     )}

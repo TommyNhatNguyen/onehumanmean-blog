@@ -55,6 +55,7 @@ const Hero = ({ blogHero1, blogHero2, blogHero3, blogHero4 }: HeroType) => {
           {...blogHero4}
           imgClasses="max-h-[246px]"
           horizontal={true}
+          textclamps={3}
           articleStyleClasses={"flex-col"}
         />
       </div>
