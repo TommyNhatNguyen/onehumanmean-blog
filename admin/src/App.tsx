@@ -34,62 +34,54 @@ const NotificationDetail = lazy(
 );
 const AuthModal = lazy(() => import("./components/AuthModal"));
 
-const AdminContextProvider = lazy(() =>
-  import("./contexts/AdminContext").then((module) => ({
-    default: module.AdminContextProvider,
-  })),
-);
-
 function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <Suspense fallback={<PageLoading />}>
           <Routes>
-            <Route element={<AdminContextProvider />}>
-              <Route path={PATH.ADMIN.INDEX} element={<PrivateRoute />}>
-                <Route element={<AdminLayout />}>
-                  <Route element={<AdminPage />}>
-                    <Route index element={<BlogsList />} />
-                    <Route path={PATH.ADMIN.BLOGS} element={<BlogsList />} />
-                    <Route
-                      path={PATH.ADMIN.CREATE_BLOG}
-                      element={<CreateBlog />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.CREATE_BLOG_BY_ID}
-                      element={<CreateBlog />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.CREATE_PROJECT}
-                      element={<CreateProject />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.CREATE_PROJECT_BY_ID}
-                      element={<CreateProject />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.PROJECTS}
-                      element={<ProjectsList />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.CHANGE_PASSWORD}
-                      element={<ChangePassword />}
-                    />
-                    <Route path={PATH.ADMIN.PROFILE} element={<Profile />} />
-                    <Route
-                      path={PATH.ADMIN.NOTIFICATION.INDEX}
-                      element={<NotificationList />}
-                    />
-                    <Route
-                      path={PATH.ADMIN.NOTIFICATION.DETAIL}
-                      element={<NotificationDetail />}
-                    />
-                  </Route>
+            <Route path={PATH.ADMIN.INDEX} element={<PrivateRoute />}>
+              <Route element={<AdminLayout />}>
+                <Route element={<AdminPage />}>
+                  <Route index element={<BlogsList />} />
+                  <Route path={PATH.ADMIN.BLOGS} element={<BlogsList />} />
+                  <Route
+                    path={PATH.ADMIN.CREATE_BLOG}
+                    element={<CreateBlog />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.CREATE_BLOG_BY_ID}
+                    element={<CreateBlog />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.CREATE_PROJECT}
+                    element={<CreateProject />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.CREATE_PROJECT_BY_ID}
+                    element={<CreateProject />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.PROJECTS}
+                    element={<ProjectsList />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.CHANGE_PASSWORD}
+                    element={<ChangePassword />}
+                  />
+                  <Route path={PATH.ADMIN.PROFILE} element={<Profile />} />
+                  <Route
+                    path={PATH.ADMIN.NOTIFICATION.INDEX}
+                    element={<NotificationList />}
+                  />
+                  <Route
+                    path={PATH.ADMIN.NOTIFICATION.DETAIL}
+                    element={<NotificationDetail />}
+                  />
                 </Route>
               </Route>
-              <Route path={PATH.ADMIN.LOGIN} element={<AuthModal />} />
             </Route>
+            <Route path={PATH.ADMIN.LOGIN} element={<AuthModal />} />
           </Routes>
         </Suspense>
       </QueryClientProvider>
