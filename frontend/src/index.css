@@ -150,7 +150,7 @@
                 position: relative;
                 height: 100%;
                 width: 100%;
-                min-height: 750px;
+                min-height: 100vh;
                 max-width: var(--max-width-container);
                 padding-left: var(--pd-container);
                 padding-right: var(--pd-container);
