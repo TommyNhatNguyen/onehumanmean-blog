@@ -2,7 +2,7 @@ import { Spin } from "antd";
 
 const PageLoading = () => {
   return (
-    <div className="flex min-h-[700px] items-center justify-center">
+    <div className="flex h-lvh min-h-[700px] items-center justify-center">
       <Spin />
     </div>
   );

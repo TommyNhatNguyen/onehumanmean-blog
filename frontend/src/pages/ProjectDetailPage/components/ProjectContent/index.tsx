@@ -1,26 +1,29 @@
 import moment from "moment";
 import CategoryTagComponent from "../../../../components/CategoryTagComponent";
 import ContactComponent from "../../../../components/ContactComponent";
-
-import { Empty } from "antd";
+import { Empty, Spin } from "antd";
 import Button from "../../../../components/Button";
 import { PATH } from "../../../../constant/path";
-import { ProjectContentType } from "../../../../types/projectTypes";
 
 const ProjectContent = ({
-  author,
-  category,
-  content,
-  title,
-  created_at,
-  thumbnail_url,
-  id,
-}: ProjectContentType) => {
+  projectSingle,
+  projectDetailLoading,
+}: {
+  projectSingle: any;
+  projectDetailLoading: boolean;
+}) => {
+  const { author, category, content, title, created_at, thumbnail_url, id } =
+    projectSingle?.data?.data || {};
   const formatedDate = moment(created_at)?.format("DD MMM YYYY");
   const categoryList = category?.split(",") as string[];
   return (
-    <>
-      {id ? (
+    <div className="mobile: relative min-h-[764px] w-full">
+      {projectDetailLoading && (
+        <div className="absolute left-0 top-0 z-20 flex h-full w-full items-start justify-center bg-white dark:bg-black-200">
+          <Spin className="z-20" size="small" />
+        </div>
+      )}
+      {!projectDetailLoading ? (
         <div className="relative flex-grow">
           <p className="font-semibold text-caption capitalize text-purple-200">
             {author} • {formatedDate}
@@ -46,7 +49,7 @@ const ProjectContent = ({
           <ContactComponent tailClasses="py-[30px] border-t-2" />
         </div>
       ) : (
-        <div className="relative flex-grow">
+        <div className="relative z-10 flex-grow">
           <Empty description="No content found for this blog" />
           <Button
             link={PATH.PROJECT.INDEX}
@@ -57,7 +60,7 @@ const ProjectContent = ({
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

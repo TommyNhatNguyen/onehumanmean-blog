@@ -5,12 +5,11 @@ import Container from "../../components/Container";
 
 const BlogDetailPage = () => {
   const { blogContentProps, recentBlogsProps } = useBlogDetail();
-  const { blogSingle } = blogContentProps;
   return (
     <Container tailStyles="pt-[30px]">
       <div className="flex flex-col-reverse gap-default lg:flex-row">
         <RecentBlogs {...recentBlogsProps} />
-        <BlogContent {...blogSingle?.data?.data} />
+        <BlogContent {...blogContentProps} />
       </div>
     </Container>
   );

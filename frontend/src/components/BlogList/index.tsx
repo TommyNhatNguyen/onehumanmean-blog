@@ -65,8 +65,9 @@ const BlogList = ({
             })
           : Array(6)
               .fill("")
-              .map((_) => (
+              .map((_, index) => (
                 <Empty
+                  key={index}
                   className="flex h-full flex-col items-center justify-center rounded-lg border-2 p-[16px]"
                   description="No blogs found"
                 />

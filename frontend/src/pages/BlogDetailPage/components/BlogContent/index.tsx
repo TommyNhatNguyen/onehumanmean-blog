@@ -1,25 +1,30 @@
 import moment from "moment";
 import CategoryTagComponent from "../../../../components/CategoryTagComponent";
 import ContactComponent from "../../../../components/ContactComponent";
-import { BlogContentType } from "../../../../types/blogTypes";
-import { Empty } from "antd";
+
+import { Empty, Spin } from "antd";
 import Button from "../../../../components/Button";
 import { PATH } from "../../../../constant/path";
 
 const BlogContent = ({
-  author,
-  category,
-  content,
-  title,
-  created_at,
-  thumbnail_url,
-  id,
-}: BlogContentType) => {
+  blogSingle,
+  blogDetailLoading,
+}: {
+  blogSingle: any;
+  blogDetailLoading: boolean;
+}) => {
+  const { author, category, content, title, created_at, thumbnail_url, id } =
+    blogSingle?.data?.data || {};
   const formatedDate = moment(created_at)?.format("DD MMM YYYY");
   const categoryList = category?.split(",") as string[];
   return (
-    <>
-      {id ? (
+    <div className="mobile: relative min-h-[764px] w-full">
+      {blogDetailLoading && (
+        <div className="absolute left-0 top-0 z-20 flex h-full w-full items-start justify-center bg-white dark:bg-black-200">
+          <Spin className="z-20" size="small" />
+        </div>
+      )}
+      {!blogDetailLoading ? (
         <div className="relative flex-grow">
           <p className="font-semibold text-caption capitalize text-purple-200">
             {author} • {formatedDate}
@@ -56,7 +61,7 @@ const BlogContent = ({
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

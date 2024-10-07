@@ -5,13 +5,12 @@ import Container from "../../components/Container";
 
 const ProjectDetailPage = () => {
   const { recentProjectsProps, projectContentProps } = useProjectDetail();
-  const { projectSingle } = projectContentProps;
 
   return (
     <Container tailStyles="pt-[30px]">
       <div className="flex flex-col-reverse gap-default lg:flex-row">
         <RecentProjects {...recentProjectsProps} />
-        <ProjectContent {...projectSingle?.data?.data} />
+        <ProjectContent {...projectContentProps} />
       </div>
     </Container>
   );
