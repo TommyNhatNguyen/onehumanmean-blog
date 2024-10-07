@@ -13,7 +13,7 @@ const projectRouter = require("./routers/projectsApis");
 const { roleValidation } = require("./middlewares/roleValidation");
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, "tempUploads");
+    callback(null, path.join(__dirname, "../tempUploads"));
   },
   filename: (req, file, callback) => {
     callback(null, Date.now() + "_" + file.originalname);
