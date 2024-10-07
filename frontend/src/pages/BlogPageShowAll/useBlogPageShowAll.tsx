@@ -27,7 +27,9 @@ function useBlogPageShowAll() {
     setSelectedTags(selectedTags);
     updateQueryString({ ...queryObject, category: selectedTags.join(",") });
   };
-  const { blogs } = useAppSelector((state) => state.blogReducers);
+  const { blogs, loading: blogCategoriesLoading } = useAppSelector(
+    (state) => state.blogReducers,
+  );
   const { data, isPending: loading } = useQuery({
     queryKey: [search],
     queryFn: () => blogServices.getBlogs(search),
@@ -41,14 +43,15 @@ function useBlogPageShowAll() {
         ?.map((item) => item.toLowerCase()),
     ),
   ];
-  const blogContentProps = { blogsRender };
+  const blogContentProps = { blogsRender, loading };
   const blogFilterProps = {
     handleSelectedTags,
     categories,
     selectedTags,
     handleSelectTime,
     filter,
+    blogCategoriesLoading,
   };
-  return { blogContentProps, blogFilterProps, loading, blogsRender };
+  return { blogContentProps, blogFilterProps };
 }
 export default useBlogPageShowAll;

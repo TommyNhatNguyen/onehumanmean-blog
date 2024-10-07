@@ -32,7 +32,7 @@ const CategoryTagComponent = ({
           <li key={item || index}>
             <Link
               className={clsx(
-                "flex h-[24px] items-center justify-center rounded-[16px] px-[10px] text-tag capitalize duration-150 hover:opacity-60",
+                "line-clamp-1 flex h-[24px] items-center justify-center text-nowrap rounded-[16px] px-[10px] text-tag capitalize duration-150 hover:opacity-60",
                 formatStyles[index].textColor,
                 formatStyles[index].bgColor,
               )}

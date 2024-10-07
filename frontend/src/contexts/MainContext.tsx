@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../store";
 import { getAllBlogs } from "../store/reducers/blogSlices";
 import { getAllProjects } from "../store/reducers/projectSlices";
+import { useScrollTop } from "../utils/useScrollTop";
 
 type MainContextPropsType = {
   handleToggleNav: () => void;
@@ -40,10 +41,7 @@ const MainContextProvider = ({ children }: { children: ReactNode }) => {
     document.body.classList.remove("--disable-scroll");
   };
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    useScrollTop();
     handleHideNav();
   }, [pathname]);
 

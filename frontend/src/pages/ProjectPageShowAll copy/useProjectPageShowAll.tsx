@@ -27,7 +27,9 @@ function useProjectPageShowAll() {
     setSelectedTags(selectedTags);
     updateQueryString({ ...queryObject, category: selectedTags.join(",") });
   };
-  const { projects } = useAppSelector((state) => state.projectReducers);
+  const { projects, loading: projectCategoriesLoading } = useAppSelector(
+    (state) => state.projectReducers,
+  );
   const { data, isPending: loading } = useQuery({
     queryKey: [search],
     queryFn: () => projectServices.getProjects(search),
@@ -41,14 +43,15 @@ function useProjectPageShowAll() {
         ?.map((item) => item.toLowerCase()),
     ),
   ];
-  const projectContentProps = { projectsRender };
+  const projectContentProps = { projectsRender, loading };
   const projectFilterProps = {
     handleSelectedTags,
     categories,
     selectedTags,
     handleSelectTime,
     filter,
+    projectCategoriesLoading,
   };
-  return { projectContentProps, projectFilterProps, loading, projectsRender };
+  return { projectContentProps, projectFilterProps };
 }
 export default useProjectPageShowAll;

@@ -43,7 +43,6 @@ const BlogList = ({
         className={twMerge(
           clsx(
             "relative mt-[32px] grid min-h-[700px] grid-flow-row grid-cols-1 gap-[24px] mobile:grid-cols-[repeat(auto-fill,minmax(340px,1fr))] mobile:gap-default",
-            blogsAll?.length < 1 && "block",
           ),
         )}
       >
@@ -52,26 +51,28 @@ const BlogList = ({
             <Spin className="z-10" size="large" />
           </div>
         )}
-        {blogsAll?.length > 0 ? (
-          blogsAll.map((item) => {
-            return (
-              <ItemPost
-                basePath={PATH.BLOG.INDEX}
-                key={item.id}
-                {...item}
-                textclamps={3}
-                imgClasses="max-h-[240px]"
-              />
-            );
-          })
-        ) : (
-          <Empty
-            className="flex h-full flex-col items-center justify-center rounded-lg border-2 p-[16px]"
-            description="No blogs found"
-          />
-        )}
+        {blogsAll?.length > 0 && !blogsAllLoading
+          ? blogsAll.map((item) => {
+              return (
+                <ItemPost
+                  basePath={PATH.BLOG.INDEX}
+                  key={item.id}
+                  {...item}
+                  textclamps={3}
+                  imgClasses="max-h-[240px]"
+                />
+              );
+            })
+          : Array(6)
+              .fill("")
+              .map((_) => (
+                <Empty
+                  className="flex h-full flex-col items-center justify-center rounded-lg border-2 p-[16px]"
+                  description="No blogs found"
+                />
+              ))}
       </div>
-      {blogsAll?.length > 0 && (
+      {blogsAll?.length > 0 && !blogsAllLoading && (
         <Pagination
           totalPage={totalPage}
           handlePagination={handlePagination}

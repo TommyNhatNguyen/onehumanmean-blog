@@ -7,7 +7,7 @@ import { blogServices } from "../../services/blogServices";
 
 function useBlogPage() {
   const [currentPage, setCurrentPage] = useState(1);
-  const { blogs } = useAppSelector((state) => state.blogReducers);
+  const { blogs, loading } = useAppSelector((state) => state.blogReducers);
   const { data: blogsAllData, isPending: blogsAllLoading } = useQuery({
     queryKey: ["blogDefault", currentPage],
     queryFn: () =>
@@ -33,7 +33,7 @@ function useBlogPage() {
   const handlePagination = (pageNum: number) => {
     setCurrentPage(pageNum);
   };
-  const heroProps = { blogHero1, blogHero2, blogHero3, blogHero4 };
+  const heroProps = { blogHero1, blogHero2, blogHero3, blogHero4, loading };
   const blogListProps = {
     blogsDefault,
     totalPage,

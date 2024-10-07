@@ -20,7 +20,7 @@ type ItemPostType = {
 const ItemPost = ({
   id,
   articleStyleClasses,
-  textclamps,
+  textclamps = 0,
   horizontal = false,
   variant = "default",
   title = "",
@@ -95,8 +95,12 @@ const ItemPost = ({
                   </h2>
                   <GoArrowUpRight className="h-[24px] w-[24px] flex-shrink-0 fill-black-100 duration-150 group-hover:rotate-45 dark:fill-white" />
                 </div>
+
                 <p
-                  className={clsx(textclamps ? `line-clamp-${textclamps}` : "")}
+                  className={twMerge(
+                    `line-clamp-${textclamps}`,
+                    "line-clamp-4",
+                  )}
                 >
                   {description}
                 </p>

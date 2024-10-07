@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { ComponentPropsWithoutRef, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
@@ -21,8 +22,10 @@ const Button = ({
       {link ? (
         <Link
           className={twMerge(
-            "flex h-[32px] w-fit items-center justify-center rounded-[24px] bg-[rgba(2,106,162,0.8)] px-[16px] font-regular text-tag capitalize text-white duration-300 hover:bg-sky-200",
-            tailClasses,
+            clsx(
+              "flex h-[32px] w-fit items-center justify-center rounded-[24px] bg-[rgba(2,106,162,0.8)] px-[16px] font-regular text-tag capitalize text-white duration-300 hover:bg-sky-200",
+              tailClasses,
+            ),
           )}
           to={link}
         >

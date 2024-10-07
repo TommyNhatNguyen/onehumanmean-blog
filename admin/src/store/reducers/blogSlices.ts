@@ -152,6 +152,7 @@ export const updateBlogById = createAsyncThunk(
     const { rejectWithValue, dispatch } = thunkAPI;
     try {
       const { blogId, ...data } = payload;
+      console.log(data);
       const res = await blogServices.updateBlogById(blogId, data);
       if (res?.data) {
         dispatch(getAllBlogs());
