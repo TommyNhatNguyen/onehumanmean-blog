@@ -15,7 +15,7 @@ const MobileNav = () => {
   return (
     <div
       className={clsx(
-        "pointer-events-none fixed left-0 top-0 flex h-lvh w-full flex-col items-center justify-center gap-[54px] opacity-0 duration-500",
+        "pointer-events-none fixed left-0 top-0 z-50 flex h-lvh w-full flex-col items-center justify-center gap-[54px] opacity-0 duration-500",
         toggleNav &&
           isDarkMode &&
           "pointer-events-auto bg-black-200 opacity-100",
