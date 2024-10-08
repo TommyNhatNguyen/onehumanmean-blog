@@ -13,7 +13,7 @@ const BlogContent = ({
   blogSingle: any;
   blogDetailLoading: boolean;
 }) => {
-  const { author, category, content, title, created_at, thumbnail_url, id } =
+  const { author, category, content, title, created_at, thumbnail_url } =
     blogSingle?.data?.data || {};
   const formatedDate = moment(created_at)?.format("DD MMM YYYY");
   const categoryList = category?.split(",") as string[];

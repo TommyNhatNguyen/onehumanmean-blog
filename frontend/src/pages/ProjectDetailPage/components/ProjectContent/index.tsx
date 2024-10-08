@@ -12,7 +12,7 @@ const ProjectContent = ({
   projectSingle: any;
   projectDetailLoading: boolean;
 }) => {
-  const { author, category, content, title, created_at, thumbnail_url, id } =
+  const { author, category, content, title, created_at, thumbnail_url } =
     projectSingle?.data?.data || {};
   const formatedDate = moment(created_at)?.format("DD MMM YYYY");
   const categoryList = category?.split(",") as string[];
