@@ -16,7 +16,7 @@ const Header = () => {
   };
 
   return (
-    <div className="relative z-50 flex h-header items-center justify-between py-[20px]">
+    <div className="relative z-[100] flex h-header items-center justify-between py-[20px]">
       <Link
         className={clsx(
           "flex-shrink-0 font-semibold text-lg text-black-100 duration-500",
