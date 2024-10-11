@@ -31,11 +31,11 @@ const ProjectContent = ({
           <h1 className="mt-[32px] font-bold text-h1 text-black-100 dark:text-white">
             {title}
           </h1>
-          <figure className="image mx-auto my-[32px] aspect-[778/498] max-h-[498px] w-full">
+          <figure className="image mx-auto my-[32px] aspect-[778/498] max-h-[498px] w-full overflow-hidden">
             <img
               src={thumbnail_url}
               alt="blog thumbnail"
-              className="object-cover object-center"
+              className="object-contain object-center"
             />
           </figure>
           <div

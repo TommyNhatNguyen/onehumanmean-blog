@@ -36,7 +36,7 @@ const BlogContent = ({
             <img
               src={thumbnail_url}
               alt="blog thumbnail"
-              className="object-cover object-center"
+              className="object-contain object-center"
             />
           </figure>
           <div
