@@ -1,12 +1,13 @@
 import clsx from "clsx";
 import moment from "moment";
-import { GoArrowUpRight } from "react-icons/go";
+import { GoArrowUp, GoArrowUpRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import CategoryTagComponent from "../CategoryTagComponent";
 import { Empty } from "antd";
 import { twMerge } from "tailwind-merge";
 import { BlogContentType } from "../../types/blogTypes";
 import { ProjectContentType } from "../../types/projectTypes";
+import { MouseEvent, useRef } from "react";
 
 type ItemPostType = {
   articleStyleClasses?: string;
@@ -36,6 +37,48 @@ const ItemPost = ({
   const description = content?.match(/<p[^>]*>(.*?)<\/p>/s)?.[1] || "";
   const formatedDate = moment(created_at).format("DD MMM YYYY");
   const categoryList = category?.split(",");
+  const CIRCLE_SIZE = 100;
+  const imgElement = useRef<HTMLAnchorElement | null>(null);
+  const circleELement = useRef<HTMLDivElement | null>(null);
+  function mouseEnter() {
+    if (imgElement.current && circleELement.current) {
+      imgElement.current.style.cursor = "none";
+      circleELement.current.animate(
+        [
+          { transform: "scale(0.5) rotate(-180deg)", cursor: "none" },
+          { transform: "scale(1) rotate(45deg)", cursor: "none" },
+        ],
+        {
+          duration: 1900,
+          fill: "forwards",
+          iterations: Infinity,
+          direction: "alternate",
+        },
+      );
+    }
+  }
+  function mouseLeave() {
+    if (imgElement.current && circleELement.current) {
+      circleELement.current.animate(
+        { transform: "scale(0) rotate(-180deg)" },
+        { duration: 300, fill: "forwards" },
+      );
+    }
+  }
+  function mouseMove(e: MouseEvent) {
+    if (imgElement.current && circleELement.current) {
+      let mousePositionX =
+        e.clientX -
+        imgElement.current.getBoundingClientRect().left -
+        CIRCLE_SIZE / 2;
+      let mousePositionY =
+        e.clientY -
+        imgElement.current.getBoundingClientRect().top -
+        CIRCLE_SIZE / 2;
+      circleELement.current.style.left = mousePositionX + "px";
+      circleELement.current.style.top = mousePositionY + "px";
+    }
+  }
   return (
     <article
       className={twMerge(
@@ -52,9 +95,13 @@ const ItemPost = ({
     >
       {thumbnail_url ? (
         <Link
+          ref={imgElement}
+          onMouseEnter={mouseEnter}
+          onMouseLeave={mouseLeave}
+          onMouseMove={mouseMove}
           to={itemPath}
           className={clsx(
-            "group flex aspect-hero w-full flex-1 flex-col overflow-hidden rounded-lg shadow-lg dark:shadow-sm dark:shadow-red-100",
+            "group relative flex aspect-hero w-full flex-1 flex-col overflow-hidden rounded-lg shadow-lg dark:shadow-sm dark:shadow-red-100",
             variant === "small" ? "aspect-xxs" : "",
             variant === "default" ? "aspect-sm" : "",
             variant === "medium" ? "aspect-md" : "",
@@ -66,6 +113,12 @@ const ItemPost = ({
             alt="image"
             className="object-cover duration-300 group-hover:scale-110"
           />
+          <div
+            ref={circleELement}
+            className={`absolute flex h-[100px] w-[100px] scale-0 items-center justify-center overflow-hidden rounded-full border border-white bg-[rgba(102,112,133,0.5)] shadow-md backdrop-blur-[5px] duration-150`}
+          >
+            <GoArrowUp className="duration-300" color="white" size={"50%"} />
+          </div>
         </Link>
       ) : (
         <Empty

@@ -52,6 +52,7 @@ const MainContextProvider = ({ children }: { children: ReactNode }) => {
     dispatch(getAllBlogs());
     dispatch(getAllProjects());
   }, []);
+
   return (
     <MainContext.Provider
       value={{
